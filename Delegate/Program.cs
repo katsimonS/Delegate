@@ -1,9 +1,28 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Delegate
 {
     class Program
     {
+        public class User : IComparable<User>
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public DateTime DateOfBirthday { get; set; }
+            public string PhoneNumber { get; set; }
+
+            public int CompareTo( User other)
+            {
+                var result = LastName.CompareTo(other.LastName);
+                if (result == 0)
+                {
+                    result = PhoneNumber.CompareTo(other.PhoneNumber);
+                }
+
+                return result;
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
